@@ -1,0 +1,268 @@
+/* =========================================================
+   SINGLE-THEME TOKENS (OLD THEME)
+   We lock the site to your original deep-blue glass style.
+   ========================================================= */
+:root{
+  --bg0:#0b1020; --bg1:#121833; /* page gradient */
+  --card:#121a36;               /* panel surface */
+  --text:#e9edf5;               /* main text */
+  --muted:#a8b3cf;              /* secondary text */
+  --accent:#67e8f9;             /* cyan */
+  --accent2:#a78bfa;            /* purple */
+  --border:#263258;             /* panel border */
+  --radius:16px;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+/* =========================================================
+   GLOBAL / PAGE
+   ========================================================= */
+html { scroll-behavior: smooth; }
+section[id] { scroll-margin-top: 90px; }
+*{ box-sizing: border-box; }
+html,body,#root{ height:100%; }
+
+body{
+  margin:0;
+  font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial;
+  background:linear-gradient(160deg,var(--bg0),var(--bg1));
+  color:var(--text);
+}
+
+.container{ width:min(1100px,92%); margin:0 auto; }
+.section{ padding:64px 0; position: relative; z-index:1; }
+.section-title{ font-size:1.6rem; margin:0 0 18px; }
+.muted{ color:var(--muted); }
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+.btn{
+  display:inline-block; padding:10px 14px;
+  border:1px solid var(--accent);
+  border-radius:12px; color:var(--text);
+  text-decoration:none; background:transparent;
+  transition: transform .12s ease, box-shadow .18s ease, background .18s ease;
+}
+.btn:hover{ transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0,0,0,.18); }
+.btn.primary{ background:var(--accent); color:#012; border-color:transparent; }
+.btn.outline{ background:transparent; }
+
+.btn.active{
+  background:var(--accent); color:#012; border-color:transparent;
+  box-shadow:0 0 0 2px rgba(103,232,249,.25);
+}
+
+a:focus-visible, button:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:2px; border-radius:10px;
+}
+
+/* =========================================================
+   CARDS + GRID (Projects and other panels)
+   ========================================================= */
+.grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+@media (max-width:860px){ .grid{ grid-template-columns:1fr; } }
+
+.card{
+  /* glassy dark surface */
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
+  border:1px solid var(--border);
+  backdrop-filter: blur(8px);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:18px;
+  color:var(--text);
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.card:hover{ transform: translateY(-1px); box-shadow: 0 12px 28px rgba(0,0,0,.35); }
+.card h3{ margin:8px 0 4px; }
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero{ position:relative; overflow:hidden; }
+.hero-bg{ position:absolute; inset:0; opacity:.58; filter:saturate(120%); z-index:0; pointer-events:none; }
+.techring canvas{ width:100%!important; height:100%!important; }
+
+.hero-inner{
+  position:relative; z-index:2; padding:72px 0 48px;
+  display:grid; grid-template-columns:140px 1fr; gap:24px; align-items:center;
+}
+@media (max-width:860px){
+  .hero-inner{ grid-template-columns:1fr; text-align:center; }
+  .avatar{ margin:0 auto; }
+}
+
+.avatar{
+  width:140px; height:140px; border-radius:50%; object-fit:cover;
+  border:3px solid var(--accent); box-shadow:var(--shadow);
+}
+.title{ font-size:clamp(1.8rem,4vw,2.4rem); margin:0; }
+.subtitle{ margin:6px 0 10px; color:var(--muted); }
+.summary{ max-width:70ch; color:#dbe6ff; }
+.cta-row{ display:flex; gap:10px; margin:12px 0 8px; flex-wrap:wrap; }
+.social{ list-style:none; display:flex; gap:14px; padding:0; margin:12px 0 0; }
+.social a{ color:var(--text); opacity:.85; text-decoration:none; }
+.social a:hover{ color:var(--accent); }
+
+/* Tag cloud overlay (from R3F Html) */
+.tag-cloud{
+  pointer-events:none; z-index:0; opacity:0.9;
+  background:rgba(3,8,23,.35);
+  border:1px solid var(--border);
+  padding:6px 10px; border-radius:999px;
+}
+.tag-cloud span{ font-size:.9rem; color:#cfe7ff; }
+
+/* =========================================================
+   SKILLS
+   ========================================================= */
+.skills-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+@media (max-width:860px){ .skills-grid{ grid-template-columns:1fr; } }
+
+.skills-group-title{ margin:0 0 8px; font-size:1.05rem; }
+
+.chip-skill{
+  background: rgba(255,255,255,.05);
+  border:1px solid var(--border);
+  color: var(--text);
+}
+
+.chips{ display:flex; flex-wrap:wrap; gap:10px; list-style:none; padding:0; margin:12px 0 0; }
+.chip{ border:1px solid var(--border); border-radius:999px; padding:6px 10px; background:rgba(255,255,255,.04); }
+
+.achievements ul{ margin:0; padding-left:18px; }
+.edu{ margin-top:12px; color:var(--muted); }
+
+/* =========================================================
+   EXPERIENCE TIMELINE (match Projects card look)
+   ========================================================= */
+.timeline{ position:relative; margin-top:20px; display:grid; gap:20px; }
+
+/* Rail + progress */
+.timeline-track{
+  position:absolute; left:14px; top:0; bottom:0; width:2px;
+  background: rgba(148,163,184,.35);
+}
+.timeline-progress{
+  position:absolute; left:14px; top:0; width:2px;
+  background: linear-gradient(var(--accent), var(--accent2));
+  transition: height 120ms linear;
+}
+
+/* Items */
+.timeline-list{ list-style:none; padding:0; margin:0; display:grid; gap:20px; }
+.timeline-item{ position:relative; padding-left:2.2rem; }
+
+/* Dot */
+.timeline-dot{
+  position:absolute; left:7px; top:18px; width:12px; height:12px;
+  background:var(--accent); border-radius:50%;
+  box-shadow:0 0 0 3px rgba(103,232,249,.18);
+}
+
+/* Card (identical surface to .card) */
+.timeline-card{
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
+  border:1px solid var(--border);
+  backdrop-filter: blur(8px);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:18px;
+  color:var(--text);
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.timeline-card:hover{ transform: translateY(-1px); box-shadow: 0 12px 28px rgba(0,0,0,.35); }
+
+.timeline-row{ display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.timeline-title{ margin:0; font-weight:650; letter-spacing:.1px; }
+.timeline-time, .timeline-place{ font-size:.85rem; color:var(--muted); }
+
+.timeline-points{ margin-top:10px; padding-left:1.1rem; }
+.timeline-points li{ margin:6px 0; color:var(--text); opacity:.92; list-style:disc; }
+
+/* Optional subtle separator for rhythm */
+.timeline-item + .timeline-item .timeline-card::before{
+  content:""; position:absolute; top:-10px; left:0; right:0; height:1px;
+  background: rgba(148,163,184,.12); border-radius:1px;
+}
+
+/* =========================================================
+   TOOLS
+   ========================================================= */
+.theme-toggle{
+  /* If you keep the button visible, make it inert-looking */
+  border:1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  padding:.4rem .6rem; border-radius:.5rem; cursor: default;
+}
+
+.scroll-to-top{
+  position: fixed; right: 1.25rem; bottom: 1.25rem;
+  width:44px; height:44px; border-radius:999px;
+  background:#eaeaea; color:#111; border:none; cursor:pointer;
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  transition: transform .15s ease, opacity .2s ease, background .2s ease;
+  z-index:9999;
+}
+.scroll-to-top:hover{ transform: translateY(-1px); background:#fff; }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.footer{
+  padding:30px 0;
+  border-top:1px solid var(--border);
+  margin-top:40px;
+  text-align:center;
+  color:var(--muted);
+}
+.footer-nav{ display:flex; flex-wrap:wrap; gap:18px; justify-content:center; }
+.footer-link{ opacity:.85; text-decoration:none; color:inherit; }
+.footer-link:hover{ opacity:1; text-decoration:underline; }
+.footer-copy{ margin-top:10px; font-size:.9rem; opacity:.7; }
+/* =========================================================
+   COMPACT SKILLS SECTION
+   ========================================================= */
+
+/* Title smaller + tighter */
+.skills-group-title {
+  font-size: 0.95rem;              /* smaller */
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* Two columns → Three columns (desktop) */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 columns */
+  gap: 12px;                                        /* tighter gap */
+}
+
+/* On mobile: 2 columns */
+@media (max-width: 860px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Skill chips: smaller, compact */
+.chip-skill {
+  font-size: 0.8rem;                   /* smaller text */
+  padding: 4px 8px;                    /* smaller pill */
+  border-radius: 8px;                  /* slightly less round */
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  color: var(--text);
+  white-space: nowrap;                 /* stays on one line */
+}
+
+/* Reduce spacing between items */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;                             /* smaller gap */
+  margin-top: 6px;
+}
